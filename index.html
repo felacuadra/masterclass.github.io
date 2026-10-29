@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masterclass: De Crear Contenido a Crear Marca — Fe Lacuadra</title>
+  
+  <!-- Tipografía Instrumental Serif & Plus Jakarta Sans / Helvética -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-pink: #ffe4f7;
+      --text-espresso: #54301c;
+      --magenta: #ba4d99;
+      --white: #ffffff;
+      --border-light: rgba(84, 48, 28, 0.12);
+      --shadow-soft: 0 12px 32px rgba(84, 48, 28, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-pink);
+      color: var(--text-espresso);
+      font-family: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Canvas sutil de estrellitas flotando de fondo */
+    #starsCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 10;
+      opacity: 0.6;
+    }
+
+    .serif {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-weight: 400;
+    }
+
+    /* Navigation */
+    nav {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 20;
+    }
+
+    .brand-logo {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 2.2rem;
+      color: var(--text-espresso);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-logo em {
+      font-style: italic;
+      color: var(--magenta);
+    }
+
+    .btn-pill-light {
+      border: 1px solid var(--text-espresso);
+      color: var(--text-espresso);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-pill-light:hover {
+      background-color: var(--text-espresso);
+      color: var(--bg-pink);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px 24px 80px 24px;
+      position: relative;
+      z-index: 20;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      border: 1px solid var(--text-espresso);
+      color: var(--text-espresso);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 8vw, 4.8rem);
+      line-height: 1.1;
+      color: var(--text-espresso);
+      margin-bottom: 24px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--magenta);
+    }
+
+    .subtitle {
+      font-size: clamp(1.1rem, 3.5vw, 1.3rem);
+      color: var(--text-espresso);
+      max-width: 680px;
+      margin: 0 auto 40px auto;
+      font-weight: 400;
+      line-height: 1.6;
+      opacity: 0.95;
+    }
+
+    /* Card de Detalles */
+    .details-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 32px 24px;
+      margin-bottom: 40px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 600px) {
+      .details-card {
+        grid-template-columns: 1fr 1fr 1fr;
+        padding: 32px 40px;
+      }
+    }
+
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .detail-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--magenta);
+      margin-bottom: 6px;
+    }
+
+    .detail-val {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 1.8rem;
+      color: var(--text-espresso);
+      line-height: 1.2;
+    }
+
+    /* Form Box */
+    .form-box {
+      background: var(--white);
+      padding: 36px 24px;
+      border-radius: 24px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-soft);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 600px) {
+      .form-box {
+        padding: 40px;
+      }
+    }
+
+    .form-title {
+      font-size: 1.5rem;
+      color: var(--text-espresso);
+      margin-bottom: 8px;
+    }
+
+    .form-desc {
+      font-size: 0.9rem;
+      color: var(--text-espresso);
+      opacity: 0.8;
+      margin-bottom: 28px;
+    }
+
+    /* Call To Action Directo a MailerLite */
+    .btn-cta {
+      display: inline-block;
+      background: var(--magenta);
+      color: var(--white);
+      padding: 16px 32px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(186, 77, 153, 0.2);
+      width: 100%;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-cta:hover {
+      background: var(--text-espresso);
+      transform: translateY(-2px);
+    }
+
+    .form-disclaimer {
+      font-size: 0.75rem;
+      color: var(--text-espresso);
+      opacity: 0.6;
+      margin-top: 14px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-light);
+      padding: 40px 24px;
+      text-align: center;
+      position: relative;
+      z-index: 20;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+
+    .footer-links a {
+      color: var(--text-espresso);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Estrellitas sutiles flotando de fondo -->
+  <canvas id="starsCanvas"></canvas>
+
+  <!-- Navegación -->
+  <nav>
+    <a href="#" class="brand-logo">Fe <em>Lacuadra</em></a>
+    <a href="https://instagram.com/fe.lacuadra" target="_blank" class="btn-pill-light">@fe.lacuadra</a>
+  </nav>
+
+  <!-- Contenedor Principal -->
+  <main class="container">
+    <span class="badge">Masterclass en Vivo & Gratuita</span>
+    <h1 class="serif">De crear contenido a <em>generar marca</em> ✦</h1>
+    <p class="subtitle">
+      Un encuentro en vivo y sin rodeos, pensado especialmente para <strong>creativas de múltiples intereses</strong> que desean ordenar el caos, salir del bucle inagotable de publicar por publicar, y construir una marca personal coherente, con alma y de verdadero impacto.
+    </p>
+
+    <!-- Card de Datos Clave -->
+    <section class="details-card">
+      <div class="detail-item">
+        <span class="detail-label">Fecha</span>
+        <span class="detail-val">Lunes 16 Nov</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Horario</span>
+        <span class="detail-val">18:00 hs <span style="font-size: 1rem; opacity: 0.8;">(UY)</span></span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Dónde</span>
+        <span class="detail-val">En Vivo <span style="font-size: 1rem; opacity: 0.8;">(Online)</span></span>
+      </div>
+    </section>
+
+    <!-- Caja de Suscripción -->
+    <section class="form-box">
+      <h3 class="form-title serif">Inscripciones tempranas abiertas ✦</h3>
+      <p class="form-desc">Asegurá tu acceso gratuito para no perderte el encuentro en vivo y recibir todo el material.</p>
+      
+      <!-- Link Directo a MailerLite (Garantiza el 100% de efectividad) -->
+      <a href="https://preview.mailerlite.io/forms/2744329/202598980680418748/share" target="_blank" class="btn-cta">
+        Reservar mi lugar gratis ✦
+      </a>
+      
+      <p class="form-disclaimer">Inscripción previa requerida. Recibirás el acceso en tu email.</p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="mailto:hola@felacuadra.com">hola@felacuadra.com</a>
+      <a href="https://instagram.com/fe.lacuadra" target="_blank">Instagram</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Fe Lacuadra. Todos los derechos reservados. Colonia del Sacramento, Uruguay.</p>
+  </footer>
+
+  <!-- Script Lluvia sutil de Estrellitas -->
+  <script>
+    const canvas = document.getElementById('starsCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const colors = ['#ba4d99', '#54301c', '#b5b954', '#88adc8'];
+    const stars = [];
+
+    function drawStarShape(cx, cy, spikes, outerRadius, innerRadius) {
+      let rot = Math.PI / 2 * 3;
+      let x = cx;
+      let y = cy;
+      let step = Math.PI / spikes;
+
+      ctx.beginPath();
+      ctx.moveTo(cx, cy - outerRadius);
+      for (let i = 0; i < spikes; i++) {
+        x = cx + Math.cos(rot) * outerRadius;
+        y = cy + Math.sin(rot) * outerRadius;
+        ctx.lineTo(x, y);
+        rot += step;
+
+        x = cx + Math.cos(rot) * innerRadius;
+        y = cy + Math.sin(rot) * innerRadius;
+        ctx.lineTo(x, y);
+        rot += step;
+      }
+      ctx.lineTo(cx, cy - outerRadius);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    for (let i = 0; i < 25; i++) {
+      stars.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        outerRadius: Math.random() * 3 + 1.5,
+        innerRadius: Math.random() * 1 + 0.3,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        speedY: Math.random() * 0.2 + 0.1,
+        alpha: Math.random() * 0.5 + 0.2
+      });
+    }
+
+    function animateStars() {
+      ctx.clearRect(0, 0, width, height);
+      stars.forEach(s => {
+        ctx.save();
+        ctx.globalAlpha = s.alpha;
+        ctx.fillStyle = s.color;
+        drawStarShape(s.x, s.y, 4, s.outerRadius, s.innerRadius);
+        ctx.restore();
+
+        s.y += s.speedY;
+        if (s.y > height) {
+          s.y = -10;
+          s.x = Math.random() * width;
+        }
+      });
+      requestAnimationFrame(animateStars);
+    }
+
+    animateStars();
+  </script>
+</body>
+</html>
