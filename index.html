@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Masterclass: De Crear Contenido a Generar Marca — Fe Lacuadra</title>
   
-  <!-- Tipografías Instrument Serif & Helvetica / Helvetica Hebrew -->
+  <!-- Tipografías Instrument Serif & Helvetica Hebrew / Helvetica -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -17,8 +17,7 @@
       --magenta: #ba4d99;
       --white: #ffffff;
       --border-light: rgba(84, 48, 28, 0.12);
-      --shadow-soft: 0 12px 32px rgba(84, 48, 28, 0.05);
-      /* Verde WhatsApp oficial para contraste llamativo */
+      --shadow-soft: 0 12px 32px rgba(84, 48, 28, 0.08);
       --wa-green: #25D366;
       --wa-green-dark: #128C7E;
     }
@@ -29,13 +28,16 @@
       padding: 0;
     }
 
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
     body {
       background-color: var(--bg-pink);
       color: var(--text-espresso);
-      /* Uso prioritario de Helvetica Hebrew / Helvetica */
       font-family: 'Helvetica Hebrew', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       line-height: 1.6;
-      overflow-x: hidden;
     }
 
     #starsCanvas {
@@ -54,7 +56,7 @@
       font-weight: 400;
     }
 
-    /* Top Announcement Bar */
+    /* Top Bar de Inmediatez */
     .top-bar {
       background-color: var(--text-espresso);
       color: var(--bg-pink);
@@ -77,10 +79,17 @@
       background-color: var(--wa-green);
       border-radius: 50%;
       display: inline-block;
-      box-shadow: 0 0 8px var(--wa-green);
+      box-shadow: 0 0 10px var(--wa-green);
+      animation: pulse 1.8s infinite;
     }
 
-    /* Navigation */
+    @keyframes pulse {
+      0% { opacity: 0.5; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 0.5; transform: scale(0.9); }
+    }
+
+    /* Navegación */
     nav {
       max-width: 900px;
       margin: 0 auto;
@@ -121,32 +130,32 @@
       color: var(--bg-pink);
     }
 
-    /* Main Container */
+    /* Layout & Contenedores */
     .container {
       max-width: 900px;
       margin: 0 auto;
-      padding: 10px 24px 80px 24px;
+      padding: 10px 24px 40px 24px;
       position: relative;
       z-index: 20;
     }
 
     .hero-section {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
 
     .badge {
       display: inline-block;
       border: 1px solid var(--text-espresso);
       color: var(--text-espresso);
-      padding: 6px 16px;
+      padding: 6px 18px;
       border-radius: 999px;
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 24px;
-      background: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.5);
     }
 
     h1 {
@@ -171,14 +180,99 @@
       opacity: 0.95;
     }
 
-    /* Imagen Hero */
-    .hero-img-container {
-      margin: 0 auto 40px auto;
+    /* Contador Regresivo Estilizado */
+    .countdown-wrapper {
+      margin-bottom: 18px;
+    }
+
+    .countdown-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-espresso);
+      margin-bottom: 10px;
+      opacity: 0.85;
+    }
+
+    .countdown-box {
+      display: inline-flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .count-unit {
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      padding: 10px 16px;
+      border-radius: 14px;
+      min-width: 68px;
+      box-shadow: 0 4px 12px rgba(84, 48, 28, 0.05);
+    }
+
+    .count-num {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 2rem;
+      line-height: 1;
+      color: var(--magenta);
+      font-weight: 700;
+    }
+
+    .count-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--text-espresso);
+      margin-top: 4px;
+    }
+
+    /* Botón de WhatsApp Verde Llamativo */
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: var(--wa-green);
+      color: var(--white);
+      padding: 18px 36px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.15rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 28px rgba(37, 211, 102, 0.35);
+      width: 100%;
+      max-width: 480px;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-whatsapp:hover {
+      background: var(--wa-green-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 34px rgba(37, 211, 102, 0.45);
+    }
+
+    .btn-whatsapp svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    /* Hero Image Wrapper con Badges Flotantes */
+    .hero-img-wrapper {
+      position: relative;
       max-width: 760px;
+      margin: 0 auto 48px auto;
+    }
+
+    .hero-img-container {
       border-radius: 24px;
       overflow: hidden;
       border: 1px solid var(--border-light);
-      box-shadow: 0 16px 40px rgba(84, 48, 28, 0.1);
+      box-shadow: 0 16px 40px rgba(84, 48, 28, 0.12);
     }
 
     .hero-img-container img {
@@ -188,12 +282,42 @@
       object-fit: cover;
     }
 
-    /* Card de Detalles */
+    .floating-badge {
+      position: absolute;
+      background: var(--white);
+      color: var(--text-espresso);
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 10px 24px rgba(84, 48, 28, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 5;
+    }
+
+    .floating-badge.top-left {
+      top: -16px;
+      left: 12px;
+    }
+
+    .floating-badge.bottom-right {
+      bottom: -16px;
+      right: 12px;
+    }
+
+    .floating-badge span.highlight {
+      color: var(--magenta);
+    }
+
+    /* Card de Datos Clave */
     .details-card {
       background: var(--white);
       border-radius: 24px;
       padding: 28px 24px;
-      margin-bottom: 40px;
+      margin-bottom: 32px;
       border: 1px solid var(--border-light);
       box-shadow: var(--shadow-soft);
       display: grid;
@@ -232,99 +356,101 @@
       line-height: 1.2;
     }
 
-    /* Horarios Internacionales */
+    /* Horarios Internacionales con Banderas CDN */
     .timezone-bar {
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.8);
       border-radius: 999px;
-      padding: 12px 24px;
+      padding: 14px 28px;
       margin-bottom: 48px;
       border: 1px solid var(--border-light);
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 16px 24px;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       font-weight: 600;
       color: var(--text-espresso);
+      box-shadow: var(--shadow-soft);
     }
 
-    /* Marquesina Infinita */
-    .marquee-wrapper {
-      background: var(--text-espresso);
-      color: var(--bg-pink);
-      overflow: hidden;
-      white-space: nowrap;
-      padding: 14px 0;
-      margin: 40px 0 60px 0;
-      transform: rotate(-1deg);
+    .timezone-bar span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .timezone-bar img {
+      border-radius: 2px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+
+    /* MARQUESINAS INFINITAS FULL WIDTH (CORREGIDAS) */
+    .marquee-fullwidth {
       width: 100vw;
       position: relative;
       left: 50%;
       right: 50%;
       margin-left: -50vw;
       margin-right: -50vw;
+      overflow: hidden;
+      display: flex;
+      padding: 16px 0;
+      z-index: 25;
     }
 
-    .marquee-content {
-      display: inline-block;
-      animation: marquee 22s linear infinite;
+    .marquee-fullwidth.dark {
+      background: var(--text-espresso);
+      color: var(--bg-pink);
+      margin-top: 30px;
+      margin-bottom: 50px;
+      transform: rotate(-1deg);
+    }
+
+    .marquee-fullwidth.magenta {
+      background: var(--magenta);
+      color: var(--white);
+      margin-top: 40px;
+      margin-bottom: 0;
+      transform: rotate(0deg);
+    }
+
+    .marquee-track {
+      display: flex;
+      flex-shrink: 0;
+      white-space: nowrap;
+      will-change: transform;
+    }
+
+    .marquee-fullwidth.dark .marquee-track {
+      animation: marqueeRun 20s linear infinite;
+    }
+
+    .marquee-fullwidth.magenta .marquee-track {
+      animation: marqueeRun 20s linear infinite reverse;
+    }
+
+    .marquee-track span {
       font-size: 0.9rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
+      padding: 0 20px;
     }
 
-    .marquee-content span {
-      margin: 0 20px;
+    @keyframes marqueeRun {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
     }
 
-    @keyframes marquee {
-      0% { transform: translateX(0%); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* Botón de WhatsApp Llamativo (Verde Oficial) */
-    .btn-whatsapp {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      background: var(--wa-green);
-      color: var(--white);
-      padding: 18px 36px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1.15rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 28px rgba(37, 211, 102, 0.35);
-      width: 100%;
-      max-width: 480px;
-      border: none;
-      cursor: pointer;
-      letter-spacing: 0.01em;
-    }
-
-    .btn-whatsapp:hover {
-      background: var(--wa-green-dark);
-      transform: translateY(-3px);
-      box-shadow: 0 14px 34px rgba(37, 211, 102, 0.45);
-    }
-
-    .btn-whatsapp svg {
-      width: 24px;
-      height: 24px;
-      fill: currentColor;
-    }
-
-    /* Secciones de Contenido */
+    /* BLOQUES DE COLOR ALTERNADOS */
     .content-block {
-      background: var(--white);
       border-radius: 28px;
       padding: 40px 28px;
       margin-bottom: 40px;
       border: 1px solid var(--border-light);
       box-shadow: var(--shadow-soft);
+      position: relative;
+      z-index: 20;
     }
 
     @media (min-width: 700px) {
@@ -333,9 +459,52 @@
       }
     }
 
+    /* Fondo Blanco */
+    .content-block.bg-white {
+      background: var(--white);
+      color: var(--text-espresso);
+    }
+
+    /* Fondo Marrón / Espresso */
+    .content-block.bg-espresso {
+      background: var(--text-espresso);
+      color: var(--bg-pink);
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .content-block.bg-espresso .section-title,
+    .content-block.bg-espresso h3 {
+      color: var(--white);
+    }
+
+    .content-block.bg-espresso .section-title em {
+      color: var(--bg-pink);
+    }
+
+    .content-block.bg-espresso .intro-p {
+      color: var(--bg-pink);
+      opacity: 0.9;
+    }
+
+    /* Fondo Magenta / Fucsia */
+    .content-block.bg-magenta {
+      background: var(--magenta);
+      color: var(--white);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .content-block.bg-magenta .section-title,
+    .content-block.bg-magenta h3,
+    .content-block.bg-magenta .intro-p {
+      color: var(--white);
+    }
+
+    .content-block.bg-magenta .section-title em {
+      color: var(--bg-pink);
+    }
+
     .section-title {
       font-size: clamp(2.2rem, 5vw, 3rem);
-      color: var(--text-espresso);
       margin-bottom: 20px;
       line-height: 1.15;
     }
@@ -347,13 +516,12 @@
 
     .intro-p {
       font-size: 1.15rem;
-      color: var(--text-espresso);
       margin-bottom: 32px;
       line-height: 1.7;
       font-weight: 400;
     }
 
-    /* Cuadrícula de Diagnóstico */
+    /* Cards de Diagnóstico */
     .pain-points {
       display: grid;
       grid-template-columns: 1fr;
@@ -372,6 +540,7 @@
       padding: 28px 24px;
       border-radius: 20px;
       border: 1px solid rgba(186, 77, 153, 0.2);
+      color: var(--text-espresso);
     }
 
     .pain-card h4 {
@@ -390,31 +559,84 @@
       line-height: 1.6;
     }
 
-    /* Pilares / Propuesta de Valor */
+    /* Biografía de Fe Lacuadra */
+    .bio-card {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    @media (min-width: 650px) {
+      .bio-card {
+        grid-template-columns: 240px 1fr;
+      }
+    }
+
+    .bio-avatar {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .bio-avatar img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .bio-text h3 {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 2.2rem;
+      margin-bottom: 6px;
+    }
+
+    .bio-sub {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--bg-pink);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .bio-text p {
+      font-size: 1rem;
+      line-height: 1.7;
+      opacity: 0.95;
+    }
+
+    /* Pilares en Fondo Magenta */
     .learn-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 28px;
+      gap: 24px;
       margin-top: 32px;
     }
 
-    .learn-item {
-      border-left: 4px solid var(--magenta);
-      padding-left: 20px;
+    .learn-item-card {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 28px 24px;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
     }
 
-    .learn-text h4 {
+    .learn-item-card h4 {
       font-family: 'Instrument Serif', Georgia, serif;
-      font-size: 2rem;
-      color: var(--text-espresso);
-      margin-bottom: 6px;
-      line-height: 1.2;
+      font-size: 2.2rem;
+      color: var(--white);
+      margin-bottom: 8px;
+      line-height: 1.1;
     }
 
-    .learn-text p {
-      font-size: 1rem;
-      color: var(--text-espresso);
-      opacity: 0.9;
+    .learn-item-card p {
+      font-size: 1.02rem;
+      color: var(--white);
+      opacity: 0.95;
       line-height: 1.6;
     }
 
@@ -464,7 +686,90 @@
       line-height: 1.6;
     }
 
-    /* Caja de Inscripción (CTA) */
+    /* Sección FAQ (Preguntas Frecuentes) */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .faq-item {
+      background: var(--bg-pink);
+      border: 1px solid rgba(186, 77, 153, 0.25);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-question {
+      padding: 20px 24px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-espresso);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 1.4rem;
+      color: var(--magenta);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-question::after {
+      content: '−';
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding: 0 24px;
+      font-size: 0.98rem;
+      color: var(--text-espresso);
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding: 0 24px 20px 24px;
+    }
+
+    /* Frase Persuasiva de Cierre */
+    .closing-pitch {
+      text-align: center;
+      margin: 48px auto 24px auto;
+      max-width: 720px;
+    }
+
+    .closing-pitch h3 {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      line-height: 1.1;
+      color: var(--text-espresso);
+      margin-bottom: 16px;
+    }
+
+    .closing-pitch h3 em {
+      font-style: italic;
+      color: var(--magenta);
+    }
+
+    .closing-pitch p {
+      font-size: 1.1rem;
+      color: var(--text-espresso);
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    /* Caja de Inscripción Final (CTA) */
     .form-box {
       background: var(--white);
       padding: 44px 28px;
@@ -472,8 +777,10 @@
       border: 2px solid var(--magenta);
       box-shadow: 0 16px 40px rgba(186, 77, 153, 0.15);
       max-width: 680px;
-      margin: 56px auto 0 auto;
+      margin: 0 auto 56px auto;
       text-align: center;
+      position: relative;
+      z-index: 20;
     }
 
     @media (min-width: 600px) {
@@ -492,7 +799,7 @@
       font-size: 1.05rem;
       color: var(--text-espresso);
       opacity: 0.9;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       line-height: 1.6;
     }
 
@@ -510,6 +817,7 @@
       text-align: center;
       position: relative;
       z-index: 20;
+      background: var(--bg-pink);
     }
 
     .footer-links {
@@ -537,7 +845,7 @@
   <!-- Canvas de Estrellitas -->
   <canvas id="starsCanvas"></canvas>
 
-  <!-- Top Announcement Bar -->
+  <!-- Top Bar de Inmediatez -->
   <div class="top-bar">
     <span class="live-dot"></span>
     <span>Free Live Masterclass · Lunes 16 de Noviembre · 18:00 hs (UY/AR)</span>
@@ -560,7 +868,30 @@
         Un encuentro en vivo para <strong>creativas de múltiples intereses</strong> que buscan construir una marca personal coherente, que las represente de verdad y funcione como un imán de oportunidades.
       </p>
 
-      <div style="margin-bottom: 32px;">
+      <!-- Contador Regresivo 1 -->
+      <div class="countdown-wrapper">
+        <div class="countdown-title">El encuentro comienza en</div>
+        <div class="countdown-box">
+          <div class="count-unit">
+            <div class="count-num days-val">00</div>
+            <div class="count-label">Días</div>
+          </div>
+          <div class="count-unit">
+            <div class="count-num hours-val">00</div>
+            <div class="count-label">Hs</div>
+          </div>
+          <div class="count-unit">
+            <div class="count-num minutes-val">00</div>
+            <div class="count-label">Min</div>
+          </div>
+          <div class="count-unit">
+            <div class="count-num seconds-val">00</div>
+            <div class="count-label">Seg</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px; margin-bottom: 32px;">
         <a href="https://whatsapp.com/channel/0029Vb9AfN372WTxuzOjmm1R" target="_blank" class="btn-whatsapp">
           <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.146 4.19 4.19-1.101z"/></svg>
           Unirme al canal de WhatsApp
@@ -568,9 +899,17 @@
       </div>
     </section>
 
-    <!-- Imagen Hero -->
-    <div class="hero-img-container">
-      <img src="IMG_2136.jpeg" alt="Fe Lacuadra — Masterclass De Crear Contenido a Generar Marca">
+    <!-- Imagen Hero con Badges Flotantes -->
+    <div class="hero-img-wrapper">
+      <div class="floating-badge top-left">
+        🎓 <span class="highlight">Lic. en Comunicación Social</span>
+      </div>
+      <div class="hero-img-container">
+        <img src="IMG_2136.jpeg" alt="Fe Lacuadra — Masterclass De Crear Contenido a Generar Marca">
+      </div>
+      <div class="floating-badge bottom-right">
+        ✨ <span class="highlight">Emprendiendo desde 2015</span>
+      </div>
     </div>
 
     <!-- Card de Datos Clave -->
@@ -589,36 +928,50 @@
       </div>
     </section>
 
-    <!-- Zonas Horarias -->
+    <!-- Zonas Horarias con Banderas CDN -->
     <div class="timezone-bar">
-      <span>🇦🇷 🇺🇾 <b>18:00 hs</b></span>
-      <span>🇨🇱 <b>18:00 hs</b></span>
-      <span>🇺🇸 NY · Miami <b>17:00 hs</b></span>
-      <span>🇨🇴 🇵🇪 <b>16:00 hs</b></span>
-      <span>🇲🇽 <b>15:00 hs</b></span>
+      <span><img src="https://flagcdn.com/24x18/uy.png" width="20" alt="UY"> <img src="https://flagcdn.com/24x18/ar.png" width="20" alt="AR"> <b>18:00 hs</b></span>
+      <span><img src="https://flagcdn.com/24x18/cl.png" width="20" alt="CL"> <b>18:00 hs</b></span>
+      <span><img src="https://flagcdn.com/24x18/us.png" width="20" alt="US"> NY · Miami <b>17:00 hs</b></span>
+      <span><img src="https://flagcdn.com/24x18/co.png" width="20" alt="CO"> <img src="https://flagcdn.com/24x18/pe.png" width="20" alt="PE"> <b>16:00 hs</b></span>
+      <span><img src="https://flagcdn.com/24x18/mx.png" width="20" alt="MX"> <b>15:00 hs</b></span>
     </div>
+  </main>
 
-    <!-- Marquesina Infinita -->
-    <div class="marquee-wrapper">
-      <div class="marquee-content">
-        <span>✦ Masterclass en vivo</span>
-        <span>✦ Lunes 16 de Noviembre</span>
-        <span>✦ De crear contenido a generar marca</span>
-        <span>✦ 100% Gratuito</span>
-        <span>✦ Fe Lacuadra</span>
-        <span>✦ Masterclass en vivo</span>
-        <span>✦ Lunes 16 de Noviembre</span>
-        <span>✦ De crear contenido a generar marca</span>
-        <span>✦ 100% Gratuito</span>
-        <span>✦ Fe Lacuadra</span>
-      </div>
+  <!-- Marquesina 1 Superior (Fondo Marrón Espresso - Full Width) -->
+  <div class="marquee-fullwidth dark">
+    <div class="marquee-track">
+      <span>✦ Masterclass en vivo</span>
+      <span>✦ Lunes 16 de Noviembre</span>
+      <span>✦ De crear contenido a generar marca</span>
+      <span>✦ 100% Gratuito</span>
+      <span>✦ Fe Lacuadra</span>
+      <span>✦ Masterclass en vivo</span>
+      <span>✦ Lunes 16 de Noviembre</span>
+      <span>✦ De crear contenido a generar marca</span>
+      <span>✦ 100% Gratuito</span>
+      <span>✦ Fe Lacuadra</span>
     </div>
+    <div class="marquee-track">
+      <span>✦ Masterclass en vivo</span>
+      <span>✦ Lunes 16 de Noviembre</span>
+      <span>✦ De crear contenido a generar marca</span>
+      <span>✦ 100% Gratuito</span>
+      <span>✦ Fe Lacuadra</span>
+      <span>✦ Masterclass en vivo</span>
+      <span>✦ Lunes 16 de Noviembre</span>
+      <span>✦ De crear contenido a generar marca</span>
+      <span>✦ 100% Gratuito</span>
+      <span>✦ Fe Lacuadra</span>
+    </div>
+  </div>
 
-    <!-- Bloque 1: El Desafío -->
-    <section class="content-block">
+  <main class="container">
+    <!-- Bloque 1: El Desafío (Fondo Blanco) -->
+    <section class="content-block bg-white">
       <h2 class="section-title serif">El verdadero desafío de <em>crear marca hoy</em></h2>
       <p class="intro-p">
-        A la hora de desarrollar tu marca personal, el principal reto es articular todo lo que te apasiona sin perder sentido ni caer en plantillas vacías.
+        A la hora de desarrollar tu marca personal, el principal reto no es publicar más, sino articular todo lo que te apasiona sin perder sentido ni caer en plantillas vacías.
       </p>
 
       <div class="pain-points">
@@ -641,39 +994,50 @@
       </div>
     </section>
 
-    <!-- Bloque 2: Tres Pilares -->
-    <section class="content-block">
+    <!-- Bloque 2: Quién te acompaña (Fondo Marrón Espresso) -->
+    <section class="content-block bg-espresso">
+      <h2 class="section-title serif">¿Quién guía este <em>espacio?</em></h2>
+      <div class="bio-card">
+        <div class="bio-avatar">
+          <img src="IMG_2136.jpeg" alt="Fe Lacuadra">
+        </div>
+        <div class="bio-text">
+          <h3>Fe Lacuadra</h3>
+          <span class="bio-sub">Lic. en Comunicación Social · Diseñadora Gráfica · Emprendiendo desde 2015</span>
+          <p>
+            Llevo más de 10 años en el ecosistema digital ayudando a mujeres creativas y con múltiples pasiones a construir un proyecto tan coherente como magnético. Sé exactamente lo que se siente querer abarcarlo todo sin apagarte ni caer en fórmulas genéricas. Mi misión en esta clase es guiarte para articular tu personalidad, concepto y atmósfera en una marca personal sólida y deseable.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bloque 3: Tres Pilares de Dirección Creativa (Fondo Magenta / Fucsia) -->
+    <section class="content-block bg-magenta">
       <h2 class="section-title serif">Tres pilares de <em>dirección creativa</em></h2>
       <p class="intro-p">
         Pasar de publicar contenido a ser un imán de oportunidades requiere dar forma a tu propuesta desde tres ejes centrales:
       </p>
 
       <div class="learn-grid">
-        <div class="learn-item">
-          <div class="learn-text">
-            <h4>1. Personalidad</h4>
-            <p>Habitar tu propia voz y tu postura con seguridad, dejando de lado los guiones ajenos para proyectar autenticidad.</p>
-          </div>
+        <div class="learn-item-card">
+          <h4>1. Personalidad</h4>
+          <p>Habitar tu propia voz y tu postura con seguridad, dejando de lado los guiones ajenos para proyectar autenticidad.</p>
         </div>
 
-        <div class="learn-item">
-          <div class="learn-text">
-            <h4>2. Concepto</h4>
-            <p>Estructurar el hilo conductor que enlaza todas tus facetas en un universo sólido y con claro sentido.</p>
-          </div>
+        <div class="learn-item-card">
+          <h4>2. Concepto</h4>
+          <p>Estructurar el hilo conductor que enlaza todas tus facetas en un universo sólido y con claro sentido.</p>
         </div>
 
-        <div class="learn-item">
-          <div class="learn-text">
-            <h4>3. Atmósfera</h4>
-            <p>Crear la experiencia estética y emocional que refleja tus valores y genera esa atracción natural en las personas indicadas.</p>
-          </div>
+        <div class="learn-item-card">
+          <h4>3. Atmósfera</h4>
+          <p>Crear la experiencia estética y emocional que refleja tus valores y genera esa atracción natural en las personas indicadas.</p>
         </div>
       </div>
     </section>
 
-    <!-- Bloque 3: Cambio de Identidad -->
-    <section class="content-block">
+    <!-- Bloque 4: Cambio de Perspectiva (Fondo Blanco) -->
+    <section class="content-block bg-white">
       <h2 class="section-title serif">El cambio de <em>perspectiva</em></h2>
       <p class="intro-p">
         La dispersión no es un defecto; es simplemente falta de una estructura estética y estratégica que contenga todo tu talento.
@@ -691,12 +1055,66 @@
       </div>
     </section>
 
-    <!-- Caja de Inscripción Final (CTA) -->
+    <!-- Bloque 5: Preguntas Frecuentes FAQ (Fondo Blanco) -->
+    <section class="content-block bg-white">
+      <h2 class="section-title serif">Preguntas <em>frecuentes</em></h2>
+      <p class="intro-p">Todo lo que necesitas saber antes de sumarte al vivo:</p>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">¿La Masterclass es realmente gratuita?</div>
+          <div class="faq-answer">Sí, el acceso en vivo es 100% gratuito. Solo necesitas inscribirte a través del canal de WhatsApp para recibir el enlace directo de acceso el día del encuentro.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">¿Habrá grabación disponible?</div>
+          <div class="faq-answer">La experiencia está diseñada para vivirse en directo, donde haremos dinámicas y responderé dudas en vivo. La prioridad de acceso la tendrán quienes estén presentes en la sala.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">¿Necesito tener una marca ya avanzada?</div>
+          <div class="faq-answer">No. Tanto si estás empezando como si llevas tiempo creando contenido pero sientes que falta rumbo y coherencia estética, esta clase te dará la estructura que necesitas.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">¿Por qué el grupo/canal es en WhatsApp?</div>
+          <div class="faq-answer">Es nuestro canal directo y libre de spam. Por ahí compartiremos los recordatorios, la plantilla de trabajo y los accesos a la sala sin que te pierdas entre correos.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Frase Persuasiva de Cierre -->
+    <div class="closing-pitch">
+      <h3>No tenés que encasillarte. <em>Vení a liderar tu propia marca.</em></h3>
+      <p>Darle dirección a tu proyecto no es limitarte, es hacer que todo lo que hagas vuelva a ser deseable, magnético y coherente.</p>
+    </div>
+
+    <!-- Caja de Inscripción Final (CTA + WhatsApp + Contador 2) -->
     <section class="form-box" id="registro">
       <h3 class="form-title serif">Inscripciones abiertas</h3>
       <p class="form-desc">
         Asegurá tu lugar gratuito para acompañarme en vivo el <strong>lunes 16 de noviembre a las 18:00 hs</strong> y dar el salto hacia una marca personal coherente y llena de oportunidades.
       </p>
+
+      <!-- Contador Regresivo 2 -->
+      <div class="countdown-wrapper" style="margin-bottom: 28px;">
+        <div class="countdown-title">Cerramos accesos en</div>
+        <div class="countdown-box">
+          <div class="count-unit">
+            <div class="count-num days-val">00</div>
+            <div class="count-label">Días</div>
+          </div>
+          <div class="count-unit">
+            <div class="count-num hours-val">00</div>
+            <div class="count-label">Hs</div>
+          </div>
+          <div class="count-unit">
+            <div class="count-num minutes-val">00</div>
+            <div class="count-label">Min</div>
+          </div>
+          <div class="count-unit">
+            <div class="count-num seconds-val">00</div>
+            <div class="count-label">Seg</div>
+          </div>
+        </div>
+      </div>
       
       <a href="https://whatsapp.com/channel/0029Vb9AfN372WTxuzOjmm1R" target="_blank" class="btn-whatsapp" style="margin: 0 auto;">
         <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.146 4.19 4.19-1.101z"/></svg>
@@ -705,8 +1123,35 @@
       
       <p class="form-disclaimer">Inscripción previa requerida. Transmisión en vivo con cupo limitado.</p>
     </section>
-
   </main>
+
+  <!-- Marquesina 2 Inferior (Fondo Magenta / Fucsia - Full Width) -->
+  <div class="marquee-fullwidth magenta">
+    <div class="marquee-track">
+      <span>✦ Reserva tu lugar gratis</span>
+      <span>✦ Cupos limitados en Zoom</span>
+      <span>✦ Lunes 16 de Noviembre</span>
+      <span>✦ De crear contenido a generar marca</span>
+      <span>✦ Nos vemos en vivo</span>
+      <span>✦ Reserva tu lugar gratis</span>
+      <span>✦ Cupos limitados en Zoom</span>
+      <span>✦ Lunes 16 de Noviembre</span>
+      <span>✦ De crear contenido a generar marca</span>
+      <span>✦ Nos vemos en vivo</span>
+    </div>
+    <div class="marquee-track">
+      <span>✦ Reserva tu lugar gratis</span>
+      <span>✦ Cupos limitados en Zoom</span>
+      <span>✦ Lunes 16 de Noviembre</span>
+      <span>✦ De crear contenido a generar marca</span>
+      <span>✦ Nos vemos en vivo</span>
+      <span>✦ Reserva tu lugar gratis</span>
+      <span>✦ Cupos limitados en Zoom</span>
+      <span>✦ Lunes 16 de Noviembre</span>
+      <span>✦ De crear contenido a generar marca</span>
+      <span>✦ Nos vemos en vivo</span>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer>
@@ -718,8 +1163,9 @@
     <p class="footer-copy">&copy; 2026 Fe Lacuadra. Todos los derechos reservados. Colonia del Sacramento, Uruguay.</p>
   </footer>
 
-  <!-- Script Lluvia sutil de Estrellitas -->
+  <!-- Scripts: Estrellitas, Contadores Sincronizados y Acordeón FAQ -->
   <script>
+    // 1. Script Lluvia sutil de Estrellitas
     const canvas = document.getElementById('starsCanvas');
     const ctx = canvas.getContext('2d');
 
@@ -787,8 +1233,44 @@
       });
       requestAnimationFrame(animateStars);
     }
-
     animateStars();
+
+    // 2. Script Contadores Regresivos Sincronizados (16 Nov 18:00 UY/AR)
+    const targetDate = new Date('November 16, 2026 18:00:00 GMT-0300').getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      let days = '00', hours = '00', minutes = '00', seconds = '00';
+
+      if (difference > 0) {
+        days = String(Math.floor(difference / (1000 * 60 * 60 * 24))).padStart(2, '0');
+        hours = String(Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+        minutes = String(Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        seconds = String(Math.floor((difference % (1000 * 60)) / 1000)).padStart(2, '0');
+      }
+
+      document.querySelectorAll('.days-val').forEach(el => el.innerText = days);
+      document.querySelectorAll('.hours-val').forEach(el => el.innerText = hours);
+      document.querySelectorAll('.minutes-val').forEach(el => el.innerText = minutes);
+      document.querySelectorAll('.seconds-val').forEach(el => el.innerText = seconds);
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // 3. Script Acordeón FAQ
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        faqItems.forEach(el => el.classList.remove('active'));
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
   </script>
 </body>
 </html>
